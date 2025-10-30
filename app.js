@@ -425,3 +425,21 @@
   renderList();
   updateStats();
 })();
+// 🌗 Theme toggle (day/night)
+(() => {
+  const btn = document.getElementById("themeToggle");
+  if (!btn) return;
+
+  // load trạng thái từ localStorage
+  const saved = localStorage.getItem("quin_theme_cn") || "light";
+  if (saved === "dark") {
+    document.body.classList.add("dark");
+    btn.textContent = "☀️ Chế độ ngày";
+  }
+
+  btn.addEventListener("click", () => {
+    const isDark = document.body.classList.toggle("dark");
+    localStorage.setItem("quin_theme_cn", isDark ? "dark" : "light");
+    btn.textContent = isDark ? "☀️ Chế độ ngày" : "🌙 Chế độ đêm";
+  });
+})();
